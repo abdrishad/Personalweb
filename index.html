@@ -6,7 +6,7 @@
   <title>Abdullah Rishad | Production Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-YKz+bgZ+zEDJzYAw0IRHbYvAdCPXnpoOY1ucAi2v6VVoSGHutT9g7EO4S2RzswZQIpyaT4F6Z5oO9OwXq4t5uA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
+   <style>
     :root {
       --bg-color: #000000;
       --text-color: #f5f5f5;
@@ -29,59 +29,59 @@
       transition: background 0.3s ease, color 0.3s ease;
     }
     .sidebar {
-      width: 300px;
+      width: 280px;
       background-color: var(--sidebar-bg);
       color: var(--text-color);
-      padding: 2rem;
+      padding: 1.5rem;
       position: fixed;
       right: 0;
       height: 100vh;
       text-align: center;
+      overflow-y: auto;
     }
     .sidebar img {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 1rem;
       border: 3px solid var(--accent-color);
     }
     .sidebar h1 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-bottom: 0.5rem;
     }
     .sidebar a {
       color: var(--accent-color);
       text-decoration: none;
       display: block;
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
     }
     .sidebar .social-icons a {
       display: inline-block;
-      margin: 0 0.3rem;
-      font-size: 1.2rem;
+      margin: 0 0.25rem;
+      font-size: 1rem;
     }
     .toggle-btn {
       background: none;
       border: 1px solid var(--accent-color);
       color: var(--accent-color);
-      padding: 0.4rem 1rem;
+      padding: 0.3rem 0.8rem;
       margin-top: 1rem;
       cursor: pointer;
       border-radius: 20px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
     .content {
-      margin-right: 320px;
-      padding: 2rem;
-      max-width: 900px;
+      margin-right: 300px;
+      padding: 1.5rem;
+      max-width: 850px;
     }
     section {
       margin-bottom: 2rem;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeInUp 0.8s ease forwards;
-      cursor: pointer;
     }
     section:nth-child(even) {
       animation-delay: 0.2s;
@@ -95,7 +95,8 @@
     h2 {
       color: var(--accent-color);
       border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.3rem;
+      font-size: 1.25rem;
     }
     ul {
       list-style: none;
@@ -104,17 +105,33 @@
     ul li::before {
       content: '•';
       color: var(--accent-color);
-      margin-right: 0.5rem;
+      margin-right: 0.4rem;
     }
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 0.5rem;
     }
     a:hover {
       text-decoration: underline;
     }
-
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 1rem;
+        padding: 1rem;
+      }
+      .content {
+        margin-right: 0;
+        padding: 1rem;
+        max-width: 100%;
+      }
+    }
     /* Modal styles */
     .modal {
       display: none;
