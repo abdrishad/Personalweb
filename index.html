@@ -2,578 +2,252 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abdullah Rishad | Production Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-YKz+bgZ+zEDJzYAw0IRHbYvAdCPXnpoOY1ucAi2v6VVoSGHutT9g7EO4S2RzswZQIpyaT4F6Z5oO9OwXq4t5uA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <style>
-    :root {
-      --bg-color: #000000;
-      --text-color: #f5f5f5;
-      --accent-color: #ffd700;
-      --sidebar-bg: #111111;
-    }
-    body.light-mode {
-      --bg-color: #ffffff;
-      --text-color: #000000;
-      --accent-color: #ffcc00;
-      --sidebar-bg: #fffff0;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name - Portfolio</title>
+  <style>
     body {
-      font-family: 'Poppins', Helvetica, sans-serif;
       margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0e0e0e;
+      color: #f5f5f5;
+    }
+    .container {
       display: flex;
-      flex-direction: row;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background 0.3s ease, color 0.3s ease;
+      flex-direction: row-reverse;
+      min-height: 100vh;
     }
     .sidebar {
-      width: 280px;
-      background-color: var(--sidebar-bg);
-      color: var(--text-color);
-      padding: 1.5rem;
-      position: fixed;
-      right: 0;
-      height: 100vh;
-      text-align: center;
-      overflow-y: auto;
+      background-color: #1a1a1a;
+      padding: 30px;
+      width: 250px;
     }
-    .sidebar img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 3px solid var(--accent-color);
+    .sidebar h2 {
+      font-size: 1.5em;
+      color: #ffd700;
+      margin-bottom: 10px;
     }
-    .sidebar h1 {
-      font-size: 1.1 rem;
-      margin-bottom: 0.3rem;
-    }
-    .sidebar a {
-      color: var(--accent-color);
-      text-decoration: none;
-      display: block;
-      margin-top: 0.2rem;
-    }
-    .sidebar .social-icons a {
-      display: inline-block;
-      margin: 0 0.25rem;
-      font-size: 1rem;
-    }
-    .toggle-btn {
-      background: none;
-      border: 1px solid var(--accent-color);
-      color: var(--accent-color);
-      padding: 0.3rem 0.8rem;
-      margin-top: 1rem;
-      cursor: pointer;
-      border-radius: 20px;
-      font-size: 0.85rem;
+    .sidebar p {
+      margin: 5px 0;
+      font-size: 0.95em;
     }
     .content {
-      margin-right: 300px;
-      padding: 1.5rem;
-      max-width: 850px;
+      flex: 1;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0;
+    }
+    h3 {
+      margin-top: 5px;
+      font-weight: normal;
+      color: #aaa;
     }
     section {
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease forwards;
+      margin: 30px 0;
+      cursor: pointer;
     }
-    section:nth-child(even) {
-      animation-delay: 0.2s;
+    section:hover {
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 6px;
+      transition: background-color 0.3s;
     }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    h2 {
-      color: var(--accent-color);
-      border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 0.3rem;
-      font-size: 1.25rem;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    ul li::before {
-      content: '•';
-      color: var(--accent-color);
-      margin-right: 0.4rem;
-    }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 0.5rem;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        margin-top: 1rem;
-        padding: 1rem;
-      }
-      .content {
-        margin-right: 0;
-        padding: 1rem;
-        max-width: 100%;
-      }
-    }
-    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
-      z-index: 1000;
+      z-index: 10;
       left: 0; top: 0;
       width: 100%; height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-      backdrop-filter: blur(3px);
+      background-color: rgba(0,0,0,0.85);
     }
     .modal-content {
-      background-color: var(--bg-color);
-      margin: 5% auto;
-      padding: 2rem;
+      background-color: #1e1e1e;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #333;
+      width: 80%;
+      max-width: 600px;
       border-radius: 8px;
-      max-width: 700px;
-      color: var(--text-color);
       position: relative;
-      box-shadow: 0 0 15px var(--accent-color);
     }
     .close {
-      color: var(--accent-color);
-      position: absolute;
-      top: 12px;
-      right: 20px;
-      font-size: 2rem;
+      color: #aaa;
+      float: right;
+      font-size: 24px;
       font-weight: bold;
       cursor: pointer;
     }
     .close:hover {
       color: #fff;
     }
-    .modal-images {
-      margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
+    .pagination {
+      margin-top: 15px;
+      text-align: center;
     }
-    .modal-images img {
-      max-width: 150px;
-      border-radius: 8px;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      border: 2px solid var(--accent-color);
-    }
-    .modal-images img:hover {
-      transform: scale(1.05);
-      border-color: #fff;
-    }
-
-    /* Navigation buttons inside modal */
-    #edu-prev-btn, #edu-next-btn,
-    #proj-prev-btn, #proj-next-btn,
-	#exp-next-btn, #exp-prev-btn {
-      background-color: var(--accent-color);
+    .pagination button {
+      background-color: #ffd700;
       border: none;
-      color: var(--bg-color);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
+      padding: 8px 12px;
+      margin: 0 5px;
+      border-radius: 4px;
       cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-      user-select: none;
+      font-weight: bold;
     }
-    #edu-prev-btn:hover:not(:disabled),
-    #edu-next-btn:hover:not(:disabled),
-    #proj-prev-btn:hover:not(:disabled),
-    #proj-next-btn:hover:not(:disabled), {
+    .pagination button:disabled {
+      background-color: #777;
+      cursor: not-allowed;
+    }
+    .pagination button:hover:not(:disabled) {
       background-color: #bfa000;
     }
-    button:disabled {
-      opacity: 0.4;
-      cursor: default;
-    }
-/* Make images and content scale properly */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Container flex layout */
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-/* Example card/item inside container */
-.card {
-  flex: 1 1 30%; /* grow, shrink, basis */
-  min-width: 250px;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-/* Text and spacing scale */
-h1, h2, p {
-  font-size: clamp(1rem, 2vw, 2rem); /* Responsive font size */
-}
-
-/* Modal, header, footer, etc. can also use flex or grid */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 100%;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  section {
-    padding: 1rem;
-  }
-
-  .modal-content {
-    width: 95%;
-    height: auto;
-  }
-
-  .modal-content .edu-page,
-  .modal-content .proj-page {
-    max-height: 70vh;
-    overflow-y: auto;
-  }
-}
-
   </style>
 </head>
 <body>
-  <div class="content">
-    <section id="about">
-      <h2>About Me</h2>
-      <p>An enthusiastic engineer ready to take up any tasks and challenges that are assigned upon. Detail-oriented and proactive, skilled in inventory control, forecasting, and warehouse operations. Strong team player with experience in retail operations and warehouse management.</p>
-    </section>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> you@example.com</p>
+      <p><strong>Phone:</strong> +91 1234567890</p>
+      <p><strong>Location:</strong> Your City, India</p>
+      <p><strong>LinkedIn:</strong> linkedin.com/in/yourprofile</p>
+      <p><strong>GitHub:</strong> github.com/yourusername</p>
+    </div>
+    <div class="content">
+      <h1>Your Name</h1>
+      <h3>Assistant Executive @ Cloud Shoes LLP</h3>
 
-    <section id="experience">
-      <h2>Experience</h2>
-      <ul>
-	       <li><strong>Trainee Manager - 	Operations </strong><br>		Salespartners India,May 2025</li>
-        <li><strong>Assistant Executive – Retail Operations</strong><br>		Cloud Shoes LLP, Jul 2024 – Apr 2025</li>
-    
-	  </ul>
-    </section>
+      <section id="education">
+        <h2>Education</h2>
+        <p>Tap to view details about your academic background.</p>
+      </section>
 
-    <section id="education">
+      <section id="projects">
+        <h2>Projects</h2>
+        <p>Tap to view your software and retail projects.</p>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <p>Tap to view your work history and responsibilities.</p>
+      </section>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal" id="modal-education">
+    <div class="modal-content">
+      <span class="close" data-modal="modal-education">&times;</span>
       <h2>Education</h2>
-      <ul>
-        <li><strong>B.Tech in Production Engineering</strong><br>	Govt. Engineering College Thrissur – CGPA: 8.16</li>
-        <li><strong>HSS in PCM</strong><br>		Chemnad Jama-ath HSS, Kasaragod – 90.58%</li>
-      </ul>
-    </section>
+      <div class="edu-page">Bachelor’s in Business Administration (2021–2024)<br>ABC College, Your City<br>CGPA: 8.3</div>
+      <div class="edu-page" style="display:none;">Higher Secondary (2019–2021)<br>XYZ School, Your City<br>Percentage: 92%</div>
+      <div class="edu-page" style="display:none;">SSLC (2018–2019)<br>XYZ School, Your City<br>Percentage: 95%</div>
+      <div class="pagination">
+        <button id="edu-prev-btn" disabled>&larr;</button>
+        <button id="edu-next-btn">&rarr;</button>
+      </div>
+    </div>
+  </div>
 
-    <section id="projects">
+  <div class="modal" id="modal-projects">
+    <div class="modal-content">
+      <span class="close" data-modal="modal-projects">&times;</span>
       <h2>Projects</h2>
-      <ul>
-        <li>Experimental Study on Materials for Thermoforming</li>
-        <li>Planning and Execution of 6th and 7th Retail Outlets</li>
-        <li>CNC Plotter – Hobby Project</li>
-      </ul>
-    </section>
-
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div>AutoCAD (2D)</div>
-        <div>Fusion 360 (3D)</div>
-        <div>Microsoft Office</div>
-        <div>Google Suite</div>
-        <div>Inventory Management</div>
-        <div>Demand Forecasting</div>
-        <div>3D Design</div>
-        <div>Time Study</div>
-        <div>Communication</div>
-        <div>Digital manufacturing</div>
-	<div>Team Leadership</div>
-        <div>Quick-Learner</div>
-      </div>
-    </section>
-  </div>
-
-  <div class="sidebar">
-    <img src="https://github.com/abdrishad/Personalweb/blob/c94633ba403795591b0ad89ecfbcb0eb200ccf3d/20241224_192349.jpg" alt="Profile Photo">
-    <h1>Abdullah Rishad</h1>
-    <p>Production Engineer</p>
-    <p>Kasaragod, Kerala, India</p>
-    <p><a href="mailto:rishadabdullahemo@gmail.com">rishadabdullahemo@gmail.com</a></p>
-    <p><a href="tel:+918139887001">+91 8139887001</a></p>
-    <a href="https://linkedin.com/in/abdullah-rishad-721195162" target="_blank">LinkedIn Profile</a>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/abdullahrishad.rishad" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://instagram.com/abdulla_rishad" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/AbdRishad" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    </div>
-    <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
-  </div>
-
-  <!-- Education Modal -->
-  <div id="modal-education" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-education-title" aria-describedby="modal-education-desc">
-    <div class="modal-content" tabindex="0">
-      <span class="close" data-modal="modal-education" aria-label="Close Education modal">&times;</span>
-      <div class="modal-education-pages">
-        <div class="edu-page" data-page="1" style="display:block;">
-          <h2>B.Tech in Production Engineering (2020 - 2024)</h2>
-          <p>Graduated From Government Engineering College Thrissur with a CGPA of 8.16(First class with distinction) which is affiliated to APJ Abdul Kalam Technical University.<br>Apart from the curricular activities,I  have been Part of the leadership team of multiple technical societies.<br>Also served as the UUC in the 2023-2024 College Union.<br>Conducted multiple Student events in state and national levels</p>
-          <div class="modal-images">
-            <!-- <img src="btech.jpg" alt="B.Tech in Production Engineering"> -->
-          </div>
-        </div>
-        <div class="edu-page" data-page="2" style="display:none;">
-          <h2>Higher Secondary School in Physics,Chemistry,Maths & Biology (2018 - 2020)</h2>
-          <p>Completed Higher Secondary Education from Chemnad Jama-ath higher seccondary school.<br>this was the place where i was introduced into the vast world of engineering and technology<br>Attended a Week long residential science camp at Central University of Kerala.
-		  
-		  </p>
-          <div class="modal-images">
-            <!-- <img src="hss.jpg" alt="HSS in PCM"> -->
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:1rem; text-align:center;">
-        <button id="edu-prev-btn" aria-label="Previous Education Page" style="margin-right:1rem;">Prev</button>
-        <button id="edu-next-btn" aria-label="Next Education Page">Next</button>
+      <div class="proj-page">Inventory Management System<br>Used Excel and VBA to track stock, automate reports and reduce discrepancies by 20%</div>
+      <div class="proj-page" style="display:none;">Retail Sales Dashboard<br>Created an interactive dashboard using Power BI to analyze weekly sales across stores</div>
+      <div class="pagination">
+        <button id="proj-prev-btn" disabled>&larr;</button>
+        <button id="proj-next-btn">&rarr;</button>
       </div>
     </div>
   </div>
 
-  <!-- Projects Modal -->
-  <div id="modal-projects" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-projects-title" aria-describedby="modal-projects-desc">
-    <div class="modal-content" tabindex="0">
-      <span class="close" data-modal="modal-projects" aria-label="Close Projects modal">&times;</span>
-      <div class="modal-projects-pages">
-        <div class="proj-page" data-page="1" style="display:block;">
-          <h2>Experimental Study on Materials for Thermoforming</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-          <div class="modal-images">
-            <!-- <img src="material-study.jpg" alt="Materials for Thermoforming"> -->
-          </div>
-        </div>
-        <div class="proj-page" data-page="2" style="display:none;">
-          <h2>Planning and Execution of 6th and 7th Retail Outlets</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat, sapien at varius commodo, velit metus suscipit sapien, in blandit nisl ex at urna.</p>
-          <div class="modal-images">
-            <!-- <img src="retail-outlets.jpg" alt="Retail Outlets Planning"> -->
-          </div>
-        </div>
-        <div class="proj-page" data-page="3" style="display:none;">
-          <h2>CNC Plotter – Hobby Project</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id lectus nec purus congue cursus a a ligula. Nullam fermentum est nec libero dapibus facilisis.</p>
-          <div class="modal-images">
-            <!-- <img src="cnc-plotter.jpg" alt="CNC Plotter"> -->
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:1rem; text-align:center;">
-        <button id="proj-prev-btn" aria-label="Previous Project Page" style="margin-right:1rem;">Prev</button>
-        <button id="proj-next-btn" aria-label="Next Project Page">Next</button>
+  <div class="modal" id="modal-experience">
+    <div class="modal-content">
+      <span class="close" data-modal="modal-experience">&times;</span>
+      <h2>Experience</h2>
+      <div class="exp-page">Assistant Executive - Retail (Oct 2024 – Present)<br>CLOUD SHOES LLP<br>Responsible for managing Walkaroo product placements, order tracking, and retailer coordination.</div>
+      <div class="exp-page" style="display:none;">Retail Intern (Jul 2024 – Sep 2024)<br>CLOUD SHOES LLP<br>Introduced to retail operations, supported order management and inventory checks.</div>
+      <div class="pagination">
+        <button id="exp-prev-btn" disabled>&larr;</button>
+        <button id="exp-next-btn">&rarr;</button>
       </div>
     </div>
   </div>
-
-<!-- Experience Modal -->
-<div id="modal-experience" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-experience-title" aria-describedby="modal-experience-desc">
-  <div class="modal-content" tabindex="0">
-    <span class="close" data-modal="modal-experience" aria-label="Close Experience modal">&times;</span>
-    <div class="modal-experience-pages">
-      <div class="exp-page" data-page="1" style="display:block;">
-        <h2>Assistant Executive – Retail Operations</h2>
-        <p>Cloud Shoes LLP (Walkaroo Group), Jul 2024 – Apr 2025<br>
-        Managed a central warehouse and 7 retail stores across South India. Led a 7-member team, improved inventory control, and implemented operational strategies for retail expansion.</p>
-        <div class="modal-images">
-          <!-- <img src="cloud-shoes.jpg" alt="Cloud Shoes Experience"> -->
-        </div>
-      </div>
-      <div class="exp-page" data-page="2" style="display:none;">
-        <h2>Trainee Manager – SalesPartners</h2>
-        <p>Bengaluru, May 2025<br>
-        Collaborated with sales teams to optimize retail and customer engagement processes. Participated in leadership training sessions and contributed to strategic planning and business development initiatives.</p>
-        <div class="modal-images">
-          <!-- <img src="salespartners.jpg" alt="SalesPartners Internship"> -->
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:1rem; text-align:center;">
-      <button id="exp-prev-btn" aria-label="Previous Experience Page" style="margin-right:1rem;">Prev</button>
-      <button id="exp-next-btn" aria-label="Next Experience Page">Next</button>
-    </div>
-  </div>
-</div>
 
   <script>
-    function toggleTheme() {
-      document.body.classList.toggle('light-mode');
+    let eduCurrentPage = 1;
+    let projCurrentPage = 1;
+    let expCurrentPage = 1;
+
+    function showEduPage(page) {
+      document.querySelectorAll('.edu-page').forEach((el, i) => {
+        el.style.display = (i + 1 === page) ? 'block' : 'none';
+      });
+      document.getElementById('edu-prev-btn').disabled = page === 1;
+      document.getElementById('edu-next-btn').disabled = page === document.querySelectorAll('.edu-page').length;
     }
 
-    // Modal open/close logic + page navigation
-    (() => {
-      // Show modal on section click
-      document.querySelectorAll('.content section').forEach(section => {
-        section.addEventListener('click', () => {
-          const modalId = 'modal-' + section.id;
-          const modal = document.getElementById(modalId);
-          if (modal) {
-            modal.style.display = 'block';
-
-            // Focus for accessibility
-            modal.querySelector('.modal-content').focus();
-
-            // Reset pages to first on open
-            if(modalId === 'modal-education') {
-              eduCurrentPage = 1;
-              showEduPage(eduCurrentPage);
-            } else if(modalId === 'modal-projects') {
-              projCurrentPage = 1;
-              showProjPage(projCurrentPage);
-            }
-          }
-        });
+    function showProjPage(page) {
+      document.querySelectorAll('.proj-page').forEach((el, i) => {
+        el.style.display = (i + 1 === page) ? 'block' : 'none';
       });
+      document.getElementById('proj-prev-btn').disabled = page === 1;
+      document.getElementById('proj-next-btn').disabled = page === document.querySelectorAll('.proj-page').length;
+    }
 
-      // Close modal on close button click
-      document.querySelectorAll('.close').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const modalId = btn.getAttribute('data-modal');
-          const modal = document.getElementById(modalId);
-          if (modal) {
-            modal.style.display = 'none';
-          }
-        });
+    function showExpPage(page) {
+      document.querySelectorAll('.exp-page').forEach((el, i) => {
+        el.style.display = (i + 1 === page) ? 'block' : 'none';
       });
+      document.getElementById('exp-prev-btn').disabled = page === 1;
+      document.getElementById('exp-next-btn').disabled = page === document.querySelectorAll('.exp-page').length;
+    }
 
-      // Close modal when clicking outside modal content
-      window.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal')) {
-          e.target.style.display = 'none';
+    // Page navigation
+    document.getElementById('edu-prev-btn').addEventListener('click', () => showEduPage(--eduCurrentPage));
+    document.getElementById('edu-next-btn').addEventListener('click', () => showEduPage(++eduCurrentPage));
+    document.getElementById('proj-prev-btn').addEventListener('click', () => showProjPage(--projCurrentPage));
+    document.getElementById('proj-next-btn').addEventListener('click', () => showProjPage(++projCurrentPage));
+    document.getElementById('exp-prev-btn').addEventListener('click', () => showExpPage(--expCurrentPage));
+    document.getElementById('exp-next-btn').addEventListener('click', () => showExpPage(++expCurrentPage));
+
+    // Open modals
+    document.querySelectorAll('.content section').forEach(section => {
+      section.addEventListener('click', () => {
+        const modalId = 'modal-' + section.id;
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.style.display = 'block';
+          if (modalId === 'modal-education') {
+            eduCurrentPage = 1;
+            showEduPage(eduCurrentPage);
+          } else if (modalId === 'modal-projects') {
+            projCurrentPage = 1;
+            showProjPage(projCurrentPage);
+          } else if (modalId === 'modal-experience') {
+            expCurrentPage = 1;
+            showExpPage(expCurrentPage);
+          }
         }
       });
+    });
 
-      // Close modal on ESC key
-      window.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") {
-          document.querySelectorAll('.modal').forEach(modal => {
-            modal.style.display = 'none';
-          });
+    // Close modal on button click
+    document.querySelectorAll('.close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById(btn.dataset.modal).style.display = 'none';
+      });
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', event => {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
         }
       });
-
-      // Education modal page navigation
-      const eduModal = document.getElementById('modal-education');
-      const eduPages = eduModal.querySelectorAll('.edu-page');
-      const eduPrevBtn = eduModal.querySelector('#edu-prev-btn');
-      const eduNextBtn = eduModal.querySelector('#edu-next-btn');
-      let eduCurrentPage = 1;
-      const eduMaxPage = eduPages.length;
-
-      function showEduPage(page) {
-        eduPages.forEach(p => p.style.display = 'none');
-        const pageToShow = eduModal.querySelector(`
-.edu-page[data-page="${page}"]`);
-if (pageToShow) pageToShow.style.display = 'block';
-eduPrevBtn.disabled = page <= 1;
-eduNextBtn.disabled = page >= eduMaxPage;
-}
-  eduPrevBtn.addEventListener('click', () => {
-    if (eduCurrentPage > 1) {
-      eduCurrentPage--;
-      showEduPage(eduCurrentPage);
-    }
-  });
-  eduNextBtn.addEventListener('click', () => {
-    if (eduCurrentPage < eduMaxPage) {
-      eduCurrentPage++;
-      showEduPage(eduCurrentPage);
-    }
-  });
-
-  // Projects modal page navigation
-  const projModal = document.getElementById('modal-projects');
-  const projPages = projModal.querySelectorAll('.proj-page');
-  const projPrevBtn = projModal.querySelector('#proj-prev-btn');
-  const projNextBtn = projModal.querySelector('#proj-next-btn');
-  let projCurrentPage = 1;
-  const projMaxPage = projPages.length;
-
-  function showProjPage(page) {
-    projPages.forEach(p => p.style.display = 'none');
-    const pageToShow = projModal.querySelector(`.proj-page[data-page="${page}"]`);
-    if (pageToShow) pageToShow.style.display = 'block';
-    projPrevBtn.disabled = page <= 1;
-    projNextBtn.disabled = page >= projMaxPage;
-  }
-
-  projPrevBtn.addEventListener('click', () => {
-    if (projCurrentPage > 1) {
-      projCurrentPage--;
-      showProjPage(projCurrentPage);
-    }
-  });
-  projNextBtn.addEventListener('click', () => {
-    if (projCurrentPage < projMaxPage) {
-      projCurrentPage++;
-      showProjPage(projCurrentPage);
-    }
-  });
-
-})();
-// Experience modal page navigation
-const expModal = document.getElementById('modal-experience');
-const expPages = expModal.querySelectorAll('.exp-page');
-const expPrevBtn = expModal.querySelector('#exp-prev-btn');
-const expNextBtn = expModal.querySelector('#exp-next-btn');
-let expCurrentPage = 1;
-const expMaxPage = expPages.length;
-
-function showExpPage(page) {
-  expPages.forEach(p => p.style.display = 'none');
-  const pageToShow = expModal.querySelector(`.exp-page[data-page="${page}"]`);
-  if (pageToShow) pageToShow.style.display = 'block';
-  expPrevBtn.disabled = page <= 1;
-  expNextBtn.disabled = page >= expMaxPage;
-}
-
-expPrevBtn.addEventListener('click', () => {
-  if (expCurrentPage > 1) {
-    expCurrentPage--;
-    showExpPage(expCurrentPage);
-  }
-});
-expNextBtn.addEventListener('click', () => {
-  if (expCurrentPage < expMaxPage) {
-    expCurrentPage++;
-    showExpPage(expCurrentPage);
-  }
-});
-
-</script> </body> </html> 
+    });
+  </script>
+</body>
+</html>
